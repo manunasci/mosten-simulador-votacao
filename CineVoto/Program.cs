@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Configuration; // GetValue<T>
 using CineVoto.Api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,16 +18,27 @@ builder.Services.AddCors(opt =>
               .AllowAnyOrigin());
 });
 
-var app = builder.Build();
+// Lê a porta HTTPS de env/config (funciona com os perfis do launchSettings.json)
+int? httpsPort = builder.Configuration.GetValue<int?>("ASPNETCORE_HTTPS_PORT")
+    ?? builder.Configuration.GetValue<int?>("HTTPS_PORT");
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (httpsPort.HasValue)
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(); 
+    builder.Services.AddHttpsRedirection(o => o.HttpsPort = httpsPort.Value);
 }
 
-app.UseHttpsRedirection();
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment()) 
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+if (httpsPort.HasValue)
+{
+    app.UseHttpsRedirection();
+}
 
 app.UseCors("frontend");
 
