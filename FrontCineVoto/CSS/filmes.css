@@ -1,0 +1,7 @@
+/* Estilos específicos para a página de filmes */
+/* Por exemplo, cores ou layouts diferentes se você precisar */
+
+.filmes-lista h2 {
+    text-align: center;
+    margin-top: 20px;
+}

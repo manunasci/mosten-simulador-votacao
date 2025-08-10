@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar - CineVoto</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="menu-hamburguer">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="filmes.html">Filmes</a></li>
+                <li><a href="series.html">Séries</a></li>
+                <li><a href="cadastrar.html">Cadastrar Novo Item</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="cadastro-form">
+            <h2>Cadastrar Novo Item</h2>
+            <form id="cadastroItemForm">
+                <div>
+                    <label for="titulo">Título:</label>
+                    <input type="text" id="titulo" name="titulo" required>
+                </div>
+                <div>
+                    <label for="genero">Gênero:</label>
+                    <input type="text" id="genero" name="genero" required>
+                </div>
+                <div>
+                    <label for="imagem">URL da Imagem:</label>
+                    <input type="url" id="imagem" name="imagem" required>
+                </div>
+                <div>
+                    <label for="descricao">Descrição (opcional):</label>
+                    <textarea id="descricao" name="descricao"></textarea>
+                </div>
+                <button type="submit">Cadastrar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 CineVoto</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Lógica de cadastro (pode ficar aqui ou em um arquivo js separado)
+        document.getElementById('cadastroItemForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const newItem = {
+                id: Date.now(), // ID único baseado no timestamp
+                titulo: document.getElementById('titulo').value,
+                genero: document.getElementById('genero').value,
+                imagem: document.getElementById('imagem').value,
+                descricao: document.getElementById('descricao').value,
+                gostei: 0,
+                naoGostei: 0
+            };
+            // Salvar o novo item (você deve implementar a lógica de persistência aqui)
+            console.log('Novo item cadastrado:', newItem);
+            alert('Item cadastrado com sucesso!');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+/* Estilos globais do corpo da página */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Estilos do cabeçalho */
+header {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+}
+
+/* Estilos da navegação e menu hambúrguer */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-hamburguer {
+    /* Estilos para o ícone do menu hambúrguer */
+}
+
+.nav-links {
+    /* Estilos para a lista de links */
+}
+
+/* Estilos dos cards */
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    width: 250px;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+/* Estilos para o formulário de cadastro */
+.cadastro-form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
