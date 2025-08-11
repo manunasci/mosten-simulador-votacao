@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar - CineVoto</title>
+    <title>Cadastrar Novo Item - CineVoto</title>
+    
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cadastro.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -29,47 +33,66 @@
             <form id="cadastroItemForm">
                 <div>
                     <label for="titulo">Título:</label>
-                    <input type="text" id="titulo" name="titulo" required>
+                    <input type="text" id="titulo" name="titulo" placeholder="Ex: A Origem" required>
                 </div>
                 <div>
                     <label for="genero">Gênero:</label>
-                    <input type="text" id="genero" name="genero" required>
+                    <input type="text" id="genero" name="genero" placeholder="Ex: Ficção Científica" required>
                 </div>
                 <div>
                     <label for="imagem">URL da Imagem:</label>
-                    <input type="url" id="imagem" name="imagem" required>
+                    <input type="url" id="imagem" name="imagem" placeholder="Ex: https://exemplo.com/imagem.jpg" required>
                 </div>
                 <div>
                     <label for="descricao">Descrição (opcional):</label>
-                    <textarea id="descricao" name="descricao"></textarea>
+                    <textarea id="descricao" name="descricao" rows="4" placeholder="Breve descrição sobre o filme ou série."></textarea>
                 </div>
                 <button type="submit">Cadastrar</button>
             </form>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2025 CineVoto</p>
-    </footer>
-
     <script src="js/script.js"></script>
     <script>
+        // Lógica de cadastro para enviar o item à API
+        const form = document.getElementById('cadastroItemForm');
         
-        document.getElementById('cadastroItemForm').addEventListener('submit', function(event) {
-            event.preventDefault();
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita o comportamento padrão do formulário
+            
+            const API_URL = 'http://sua-api.com/api'; // Substitua pela URL da sua API
+
             const newItem = {
-                id: Date.now(), 
                 titulo: document.getElementById('titulo').value,
                 genero: document.getElementById('genero').value,
                 imagem: document.getElementById('imagem').value,
                 descricao: document.getElementById('descricao').value,
-                gostei: 0,
-                naoGostei: 0
             };
+
             
-            console.log('Novo item cadastrado:', newItem);
-            alert('Item cadastrado com sucesso!');
-            this.reset();
+            fetch(`${API_URL}/cadastrar`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newItem)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao cadastrar o item.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert('Item cadastrado com sucesso!');
+                form.reset(); // Limpa o formulário
+                // Opcional: redirecionar para a página inicial ou de filmes
+                // window.location.href = 'index.html'; 
+            })
+            .catch(error => {
+                console.error("Erro no cadastro:", error);
+                alert('Ocorreu um erro ao cadastrar o item. Tente novamente.');
+            });
         });
     </script>
 </body>

@@ -1,0 +1,55 @@
+
+.cadastro-form {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: var(--card-background-color);
+    border-radius: 12px;
+    box-shadow: 0 8px 16px var(--box-shadow-color);
+}
+
+.cadastro-form h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+}
+
+.cadastro-form div {
+    margin-bottom: 15px;
+}
+
+.cadastro-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.cadastro-form input[type="text"],
+.cadastro-form input[type="url"],
+.cadastro-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.cadastro-form button[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cadastro-form button[type="submit"]:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-2px);
+}
