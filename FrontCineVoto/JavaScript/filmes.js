@@ -1,10 +1,11 @@
-// A URL base da sua API
-const API_URL = 'http://sua-api.com/api'; // Substitua por a URL real da sua API
 
-// Função para buscar os filmes da API
+const API_URL = 'http://localhost:5174'; 
+
+
+
 async function buscarFilmesDaAPI() {
     try {
-        const response = await fetch(`${API_URL}/filmes`);
+        const response = await fetch(`{http://localhost:5174}/filmes`);
         if (!response.ok) {
             throw new Error('Erro ao buscar filmes da API');
         }
@@ -12,15 +13,15 @@ async function buscarFilmesDaAPI() {
         return filmes;
     } catch (error) {
         console.error("Não foi possível carregar os filmes:", error);
-        return []; // Retorna um array vazio em caso de erro
+        return []; 
     }
 }
 
-// Função para renderizar os filmes
+
 async function renderizarFilmes() {
     const filmes = await buscarFilmesDaAPI();
     const container = document.getElementById('filmes-container');
-    container.innerHTML = ''; // Limpa o container
+    container.innerHTML = ''; 
 
     filmes.forEach(filme => {
         const card = document.createElement('div');
@@ -36,7 +37,7 @@ async function renderizarFilmes() {
     });
 }
 
-// Função para enviar um voto para a API
+
 async function votar(tipoVoto, id) {
     try {
         const response = await fetch(`${API_URL}/votar/${id}`, {
@@ -49,7 +50,7 @@ async function votar(tipoVoto, id) {
         if (!response.ok) {
             throw new Error('Erro ao registrar o voto');
         }
-        // Atualiza a interface após o voto
+      
         renderizarFilmes(); 
     } catch (error) {
         console.error("Não foi possível registrar o voto:", error);
@@ -57,7 +58,7 @@ async function votar(tipoVoto, id) {
     }
 }
 
-// Função para o cadastro de novos itens
+
 async function cadastrarItem(item) {
     try {
         const response = await fetch(`${API_URL}/cadastrar`, {
@@ -70,15 +71,14 @@ async function cadastrarItem(item) {
         if (!response.ok) {
             throw new Error('Erro ao cadastrar o item');
         }
-        // Se o cadastro foi bem-sucedido, você pode redirecionar ou mostrar uma mensagem
+        
         alert('Item cadastrado com sucesso!');
-        // Por exemplo, recarregar a página ou a lista de filmes
-        // renderizarFilmes(); 
+        
     } catch (error) {
         console.error("Não foi possível cadastrar o item:", error);
         alert('Ocorreu um erro ao cadastrar. Tente novamente.');
     }
 }
 
-// Chama a função para renderizar os filmes quando a página carregar
+
 document.addEventListener('DOMContentLoaded', renderizarFilmes);

@@ -54,11 +54,11 @@
 
     <script src="js/script.js"></script>
     <script>
-        // Lógica de cadastro (pode ficar aqui ou em um arquivo js separado)
+        
         document.getElementById('cadastroItemForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const newItem = {
-                id: Date.now(), // ID único baseado no timestamp
+                id: Date.now(), 
                 titulo: document.getElementById('titulo').value,
                 genero: document.getElementById('genero').value,
                 imagem: document.getElementById('imagem').value,
@@ -66,7 +66,7 @@
                 gostei: 0,
                 naoGostei: 0
             };
-            // Salvar o novo item (você deve implementar a lógica de persistência aqui)
+            
             console.log('Novo item cadastrado:', newItem);
             alert('Item cadastrado com sucesso!');
             this.reset();
